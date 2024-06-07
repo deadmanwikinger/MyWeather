@@ -40,10 +40,7 @@ const init = () => {
     }
 }
 
-document.getElementById('change-location').addEventListener('click', () => {
-    window.location.href = './startup.html'
-})
-
+//Geocoding API
 const getLocationName = (lat, long) => {
     const apiUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=1&appid=00ef585eceee6940d7fb2de5e5027cbc`
     fetch(apiUrl)
@@ -54,17 +51,21 @@ const getLocationName = (lat, long) => {
     .then(data => document.getElementById('location').innerText = data[0].name)
 }
 
+
+//Weatherdata API
 const getWeather = (lat, long) => {
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,relative_humidity_2m,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=temperature_2m,weather_code,is_day&timeformat=unixtime&past_hours=1&forecast_hours=12&models=best_match&timezone=auto`
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,relative_humidity_2m,is_day,weather_code,surface_pressure,wind_speed_10m&hourly=temperature_2m,weather_code,is_day&timeformat=unixtime&past_hours=1&forecast_hours=24&daily=uv_index_max,precipitation_probability_max,sunrise,sunset&forecast_days=1&models=best_match&timezone=auto`
     fetch(apiUrl)
     .then(response => response.json())
     .catch(error => {
         alert('Error fetching weather data: ', error)
     })
-    .then(diplayData)
+    .then(displayData)
 }
 
-const diplayData = (data) => {
+
+//Display Data
+const displayData = (data) => {
     //Current
     document.getElementById('description').innerText = weatherDescriptions[data.current.weather_code]
     document.getElementById('temp').innerText = `${Math.floor(data.current.temperature_2m)}°`
@@ -89,7 +90,7 @@ const diplayData = (data) => {
         tempData: tempData[index],
         isDay: isDay[index]
     }))
-    console.log(forecastDataArray)
+    
     for (let index = 0; index < forecastItems.length; index++) {
         forecastItems[index].innerHTML = ''
 
@@ -109,6 +110,53 @@ const diplayData = (data) => {
         forecastItems[index].appendChild(icon)
         forecastItems[index].appendChild(temp)
     }
+
+    document.getElementById('precipitation-probability').innerText = `${data.daily.precipitation_probability_max[0]}%`
+    document.getElementById('precipitation-probability').style.backgroundImage = `
+    radial-gradient(
+        circle closest-side,
+        #274157 0,
+        #274157 85%,
+        transparent 10%,
+        transparent 100%,
+        #274157 0
+    ),
+    conic-gradient(
+        #ff701f 0,
+        #ff701f ${data.daily.precipitation_probability_max[0]}%,
+        #7c8291 0,
+        #7c8291 100%
+    )`
+
+    document.getElementById('uv-index').innerText = data.daily.uv_index_max[0]
+    document.getElementById('uv-index').style.backgroundImage = `
+    radial-gradient(
+        circle closest-side,
+        #274157 0,
+        #274157 85%,
+        transparent 10%,
+        transparent 100%,
+        #274157 0
+    ),
+    conic-gradient(
+        #ff701f 0,
+        #ff701f ${data.daily.uv_index_max[0]/11*100}%,
+        #7c8291 0,
+        #7c8291 100%
+    )`
+
+    document.getElementById('sunrise').innerHTML = `Sunrise:<br>${new Date(data.daily.sunrise[0] * 1000).toTimeString().substring(0, date.length - 3)}`
+    document.getElementById('sunset').innerHTML = `Sunset:<br>${new Date(data.daily.sunset[0] * 1000).toTimeString().substring(0, date.length - 3)}`
 }
+
+
+//Site Navigation
+document.getElementById('change-location').addEventListener('click', () => {
+    window.location.href = './startup.html'
+})
+
+document.getElementById('forecast-daily').addEventListener('click', () => {
+    window.location.href = './extended_forecast.html'
+})
 
 window.onload = init

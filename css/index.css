@@ -73,7 +73,6 @@
             
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            column-gap: 3rem;
 
             .info-tiles-item{
                 display: flex;
@@ -107,7 +106,7 @@
             }
 
             :last-child{
-                color: #3E66DC;
+                color: #a4bbff;
             }
         }
 
@@ -119,7 +118,7 @@
 
             display: grid;
             align-items: center;
-            grid-template-columns: 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw;
+            grid-template-columns: 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw 20vw;
             column-gap: 2vw;
             grid-template-rows: 20vh;
 
@@ -185,9 +184,9 @@
                     #7c8291 0,
                     #7c8291 100%
             );
-                width: 70%;
+                width: 60%;
                 aspect-ratio: 1/1;
-                margin: 0;
+                margin-top: 1vh;
                 border-radius: 1rem;
             }
         }
