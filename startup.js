@@ -1,5 +1,5 @@
 document.querySelector('#search-btn').addEventListener('click', () => {
-    let searchValue = document.getElementById('search-location').value
+    let searchValue = document.getElementById('search-location').value.trim()
     const apiUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${searchValue}&count=1&language=en&format=json`
     
     fetch(apiUrl)
