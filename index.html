@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWeather | Home</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="main-info">
+            <div class="location">
+                <img src="./res/nav_icons/edit_location.png" id="change-location" alt="edit location">
+                <span id="location">--</span>
+            </div>
+            <div id="description" class="description">Mostly Sunny</div>
+            <div id="temp" class="temp">--</div>
+            <div class="icon">
+                <img id="icon" src="./res/day/4_1.png" alt="weather_icon">
+            </div>
+            <div class="info-tiles">
+                <div class="info-tiles-item">
+                    <img src="./res/info-icons/wind.png" alt="wind">
+                    <span id="wind">--</span>
+                    <span>Wind</span>
+                </div>
+                <div class="info-tiles-item">
+                    <img src="./res/info-icons/humidity.png" alt="wind">
+                    <span id="humidity">--</span>
+                    <span>Humidity</span>
+                </div>
+                <div class="info-tiles-item">
+                    <img src="./res/info-icons/pressure.png" alt="wind">
+                    <span id="pressure">--</span>
+                    <span>Pressure</span>
+                </div>
+            </div>
+        </div>
+        <div class="hourly-forecast">
+            <div class="header">
+                <span>Today</span>
+                <span>Next 7 days ></span>
+            </div>
+            <div id="forecast-item-collection">
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+                <div class="forecast-item"></div>
+            </div>
+        </div>
+        <div class="additional-infos">
+            <div class="info-item">
+                <span class="description">Air Quality</span>
+                <figure class="pie-chart">10</figure>
+                </div>
+            <div class="info-item">
+                <span class="description">Air Quality</span>
+                <figure class="pie-chart">20</figure>
+            </div>
+            <div class="info-item">
+                <span class="description">Air Quality</span>
+                <figure class="pie-chart">1</figure>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
